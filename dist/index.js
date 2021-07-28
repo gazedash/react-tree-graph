@@ -161,23 +161,38 @@
 				this.props.textProps,
 				this.props[this.props.keyProp]
 			);
-			return /*#__PURE__*/ React.createElement(
-				'g',
-				_extends({}, wrappedGProps, {
-					transform: this.getTransform(),
-				}),
+			const TextChildren = this.props[this.props.labelProp];
+			const textChildren =
+				typeof (wrappedTextProps === null || wrappedTextProps === void 0
+					? void 0
+					: wrappedTextProps.children) === 'function'
+					? wrappedTextProps.children(this.props)
+					: TextChildren;
+			const Children = /*#__PURE__*/ React.createElement(
+				React.Fragment,
+				null,
 				/*#__PURE__*/ React.createElement(this.props.shape, wrappedNodeProps),
 				/*#__PURE__*/ React.createElement(
 					'text',
-					_extends(
-						{
-							dx: offset + 0.5,
-							dy: 5,
-						},
-						wrappedTextProps
-					),
-					this.props[this.props.labelProp]
+					_extends({}, wrappedTextProps, {
+						children: textChildren,
+						dx: offset + 0.5,
+						dy: 5,
+					})
 				)
+			);
+			const children =
+				typeof (wrappedGProps === null || wrappedGProps === void 0
+					? void 0
+					: wrappedGProps.children) === 'function'
+					? wrappedGProps.children(this.props)
+					: Children;
+			return /*#__PURE__*/ React.createElement(
+				'g',
+				_extends({}, wrappedGProps, {
+					children: children,
+					transform: this.getTransform(),
+				})
 			);
 		}
 	}
