@@ -48,14 +48,18 @@ export default class Node extends React.PureComponent {
 			this.props.textProps,
 			this.props[this.props.keyProp]
 		);
+		
+		const TextChildren = this.props[this.props.labelProp]
+				const textChildren = typeof wrappedTextProps?.children === 'function' ? wrappedTextProps.children(this.props) : TextChildren
+		
+		const Children = 				<><this.props.shape {...wrappedNodeProps}/>
+				<text {...wrappedTextProps}  children={textChildren} dx={offset + 0.5} dy={5} /></>
+		
+		const children = typeof wrappedGProps?.children === 'function' ? wrappedGProps.children(this.props) : Children
 
 		return (
-			<g {...wrappedGProps} transform={this.getTransform()}>
-				<this.props.shape {...wrappedNodeProps}/>
-				<text dx={offset + 0.5} dy={5} {...wrappedTextProps}>
-					{this.props[this.props.labelProp]}
-				</text>
-			</g>);
+			<g {...wrappedGProps} children={children} transform={this.getTransform()}>
+</g>);
 	}
 }
 
